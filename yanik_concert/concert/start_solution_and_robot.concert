@@ -1,0 +1,7 @@
+<concert>
+  <launch package="yanik_concert" name="yanik.launch" title="concert:11311" port="11311">
+  </launch>
+
+  <!--launch package="turtlebot_bringup" name="concert_client.launch" title="robot:11312" port="11312"-->
+  <!--/launch-->
+</concert>

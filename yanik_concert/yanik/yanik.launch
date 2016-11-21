@@ -1,0 +1,24 @@
+<launch>
+  <arg name="services"          default="yanik_concert/yanik.services"/>  <!-- "<package_name>/<file>.services"  tuple-->
+  <arg name="concert_name"      default="Yanik Concert"/>
+  <arg name="concert_description" default="This is my concert"/>
+
+  <!-- To enable webapp interations -->
+  <arg name="enable_rosbridge"  default="false"/>
+  <arg name="rosbridge_address" default="localhost"/>
+  <arg name="rosbridge_port"    default="9090"/>
+
+  <!--autoenable services, e.g. [admin, teleop] services which auto enabled on start up or 'all' to enable all services -->
+  <arg name="default_auto_enable_services" default="all"/>
+
+  <include file="$(find concert_master)/launch/concert_master.launch">
+    <arg name="concert_name"                  value="$(arg concert_name)"/>
+    <arg name="concert_description"           value="$(arg concert_description)"/>
+    <arg name="services"                      value="$(arg services)"/>
+
+    <arg name="default_auto_enable_services"  value="$(arg default_auto_enable_services)"/>
+    <arg name="enable_rosbridge"              value="$(arg enable_rosbridge)"/>
+    <arg name="rosbridge_address"             value="$(arg rosbridge_address)"/>
+    <arg name="rosbridge_port"                value="$(arg rosbridge_port)"/>
+  </include>
+</launch>
