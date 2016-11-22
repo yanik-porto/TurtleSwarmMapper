@@ -1,8 +1,10 @@
 - resource_name: concert_service_admin/admin
 - resource_name: concert_service_teleop/teleop
-  overrides :
-	name: Yanik Teleop
-	description: This is yanik's teleoperation in yanik's solution
-	priority: 100
-	parameters: yanik_concert/yanik/yanik_teleop.parameters
-- resource_name: concert_service_indoor_2d_map_prep/indoor_2d_map_prep
+- resource_name: chatter_concert/chatter
+
+ # overrides :
+#	name: Yanik Teleop
+#	description: This is yanik's teleoperation in yanik's solution
+#	priority: 100
+#	parameters: yanik_concert/yanik/yanik_teleop.parameters
+#- resource_name: concert_service_indoor_2d_map_prep/indoor_2d_map_prep
