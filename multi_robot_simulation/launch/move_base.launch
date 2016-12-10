@@ -1,0 +1,7 @@
+<launch>
+  <arg name="robot"  default="robot_1"/>
+  <node name="move_robot_base" pkg="move_base" type="move_base">
+    <!--remap from="cmd_vel"  to="$(arg robot)/cmd_vel"/-->
+    <!--remap from="map"  to="$(arg robot)/map"/-->
+  </node>
+</launch>
