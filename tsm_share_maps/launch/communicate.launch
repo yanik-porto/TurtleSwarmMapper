@@ -1,0 +1,10 @@
+<launch>
+	<include file="$(find adhoc_communication)/launch/adhoc_communication.launch">
+		<arg name="robot_name" value="turtlebot"/>
+		<arg name="robot_prefix" value="/turtlebot"/>
+		<arg name="interface" value="wlan0"/>
+		<arg name="use_sim_time" value="true"/>
+		<arg name="mac" value="dc:85:de:27:d2:10"/>
+		<arg name="simulation_mode" value="False"/> 
+	</include>
+</launch>
