@@ -185,3 +185,7 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(change_membership_client src/change_membership_client.cpp)
+target_link_libraries(change_membership_client ${catkin_LIBRARIES})
+add_dependencies(change_membership_client adhoc_communication)
