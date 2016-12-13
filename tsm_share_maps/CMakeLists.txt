@@ -189,3 +189,8 @@ include_directories(
 add_executable(change_membership_client src/change_membership_client.cpp)
 target_link_libraries(change_membership_client ${catkin_LIBRARIES})
 add_dependencies(change_membership_client adhoc_communication)
+
+add_executable(get_group_state_client src/get_group_state_client.cpp)
+target_link_libraries(get_group_state_client ${catkin_LIBRARIES})
+add_dependencies(get_group_state_client adhoc_communication)
+

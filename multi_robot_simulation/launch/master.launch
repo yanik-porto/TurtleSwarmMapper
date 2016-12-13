@@ -37,6 +37,8 @@
             <arg name="frontier_selection" value="1" />
             <arg name="use_sim_time" value="true" />
         </include> -->
+	<node name="blabler" pkg="rospy_tutorials" type="listener">
+	</node>
   </group>
   <group ns="robot_1">
         <include file="$(find adhoc_communication)/launch/adhoc_communication.launch">
@@ -51,7 +53,9 @@
             <arg name="num_of_robots" value="2" />
             <arg name="sim_robot_macs" value="robot_0,02:01:00:00:00:00!robot_1,02:02:00:00:00:00" />
 	</include>
-	<include file="$(find multi_robot_simulation)/launch/move_base.launch">
+<!--	<node name="change_membership" pkg="tsm_share_maps" type="change_membership_client" args="/robot_1 /adhoc_communication/ mc_robot_0 1">
+	</node>
+-->	<include file="$(find multi_robot_simulation)/launch/move_base.launch">
       		<arg name="robot" value="robot_1" />
     	</include>
     	<include file="$(find multi_robot_simulation)/launch/mapping.launch">
@@ -74,4 +78,5 @@
             <arg name="use_sim_time" value="true" />
         </include> -->
   </group>
+
 </launch>

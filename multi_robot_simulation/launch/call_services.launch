@@ -1,0 +1,21 @@
+<launch>
+	<!-- Check Membership of the connections -->
+<!--	<node name="change_state0_1" pkg="tsm_share_maps" type="get_group_state_client" args="/robot_0 /adhoc_communication/ mc_robot_1">
+        </node>
+        <node name="change_state1_0" pkg="tsm_share_maps" type="get_group_state_client" args="/robot_1 /adhoc_communication/ mc_robot_0">
+        </node>
+-->
+	<!-- For the robots to be member of the others robot's group -->
+	<node name="change_membership0_1" pkg="tsm_share_maps" type="change_membership_client" args="/robot_0 /adhoc_communication/ mc_robot_1 1">
+  	</node>
+	<node name="change_membership1_0" pkg="tsm_share_maps" type="change_membership_client" args="/robot_1 /adhoc_communication/ mc_robot_0 1">
+        </node>
+
+	<!-- Check Membership of the connections -->
+	<node name="change_state0_1_r" pkg="tsm_share_maps" type="get_group_state_client" args="/robot_0 /adhoc_communication/ mc_robot_1">
+        </node>
+	<node name="change_state1_0_r" pkg="tsm_share_maps" type="get_group_state_client" args="/robot_1 /adhoc_communication/ mc_robot_0">
+        </node>
+
+
+</launch>
