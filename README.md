@@ -29,7 +29,9 @@ services :
 launcher for stage world with 2 robots, mapping, move_base and sharing data in each of them
 
 > roslaunch multi-robot-simulation master.launch
-> rosservice call /robot_0/adhoc_communication/join_mc_group mc_robot_1 1
+
+> roslaunch multi-robot-simulation call_services.launch
+
 > rosservice call /robot_0/adhoc_communication/send_twist "dst_robot: 'robot_1'
 topic: '/cmd_vel'
 twist:
@@ -53,6 +55,8 @@ launcher for real turtlebot with rplidar node, gmapping, move_base
 - Dependencies : rplidar_node, turtlebot_le2i, gmapping, move_base
 
 ## tsm_share_maps
-launcher for map exchange through adhoc_communication 
+launcher for map exchange through adhoc_communication, node for calling adhoc_communication services 
+
+>rosrun tsm_share_maps change_membership_client /robot_0 /adhoc_communication/ mc_robot_1 1
 
 - Dependencies : adhoc_communication
