@@ -50,7 +50,7 @@ launcher for stage world with 2 robots, mapping, move_base and sharing data in e
 ## tsm_nav
 launcher for real turtlebot with rplidar node, gmapping, move_base
 
-    roslaunch tsm_nav bringup_map_move.launch
+     roslaunch tsm_nav bringup_map_move.launch
 
 - Dependencies : rplidar_node, turtlebot_le2i, gmapping, move_base
 
@@ -58,11 +58,9 @@ launcher for real turtlebot with rplidar node, gmapping, move_base
 launcher for map exchange through adhoc_communication, node for calling adhoc_communication services 
 
     #in simulation
-
     rosrun tsm_share_maps change_membership_client /robot_0 /adhoc_communication/ mc_robot_1 1
 
     #with running rtabmap
-
     rosrun tsm_share_maps send_pointcloud_client
 
 - Dependencies : adhoc_communication, sensor_msgs
@@ -73,7 +71,6 @@ new srv :
 * SendPointCloud
 
     #for real communication
-
     rosrun adhoc_communication adhoc_communication
 
 - Tutorial : http://wiki.ros.org/adhoc_communication
