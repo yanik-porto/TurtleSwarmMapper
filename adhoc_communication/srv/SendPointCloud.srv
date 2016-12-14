@@ -1,0 +1,5 @@
+string dst_robot
+string topic
+sensor_msgs/PointCloud2 cloud
+---
+uint8 status
