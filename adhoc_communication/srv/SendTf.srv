@@ -1,0 +1,6 @@
+string dst_robot
+string topic
+tf2_msgs/TFMessage tf
+---
+uint8 status
+

@@ -364,8 +364,8 @@ bool sendQuaternion(adhoc_communication::SendQuaternion::Request &req,
 }
 
 /*Tsm function*/
-bool sendPointCloud(adhoc_communication::SendQuaternion::Request &req,
-        adhoc_communication::SendQuaternion::Response & res)
+bool sendPointCloud(adhoc_communication::SendPointCloud::Request &req,
+        adhoc_communication::SendPointCloud::Response & res)
 {
     /* Description:
      * Service call to send POINTCLOUD.

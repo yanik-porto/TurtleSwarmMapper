@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   nav_msgs
   message_generation
   sensor_msgs
+  tf2_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -90,6 +91,7 @@ find_package(catkin REQUIRED COMPONENTS
    BroadcastCMgrRobotUpdate.srv
    BroadcastString.srv
    SendPointCloud.srv
+   SendTf.srv
  )
 
 ## Generate actions in the 'action' folder
@@ -106,6 +108,7 @@ find_package(catkin REQUIRED COMPONENTS
    nav_msgs
    geometry_msgs
    sensor_msgs
+   tf2_msgs
  )
 
 ###################################

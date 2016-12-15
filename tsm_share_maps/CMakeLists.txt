@@ -8,6 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   adhoc_communication
   map_merger
   sensor_msgs
+  tf2_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -198,5 +199,10 @@ add_dependencies(get_group_state_client adhoc_communication)
 add_executable(send_pointcloud_client src/send_pointcloud_client.cpp)
 target_link_libraries(send_pointcloud_client ${catkin_LIBRARIES})
 add_dependencies(send_pointcloud_client adhoc_communication sensor_msgs)
+
+add_executable(send_tf_client src/send_tf_client.cpp)
+target_link_libraries(send_tf_client ${catkin_LIBRARIES})
+add_dependencies(send_tf_client adhoc_communication tf2_msgs)
+
 
 

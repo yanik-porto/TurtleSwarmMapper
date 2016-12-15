@@ -385,6 +385,27 @@ bool sendPointCloud(adhoc_communication::SendPointCloud::Request &req,
     return true;
 }
 
+bool sendTf(adhoc_communication::SendTf::Request &req,
+        adhoc_communication::SendTf::Response & res)
+{
+    /* Description:
+     * Service call to send POINTCLOUD.
+     */
+#ifdef PERFORMANCE_LOGGING_SERVICE_CALLS
+    unsigned long time_call = getMillisecondsTime();
+#endif
+
+    ROS_DEBUG("Service called to QUATERNION...");
+    string s_msg = getSerializedMessage(req.tf);
+    /*Call the function sendPacket and with the serialized object and the frame payload type as parameter*/
+    res.status = sendPacket(req.dst_robot, s_msg, FRAME_DATA_TYPE_TF, req.topic);
+
+#ifdef PERFORMANCE_LOGGING_SERVICE_CALLS
+    Logging::logServiceCalls("Tf", time_call, getMillisecondsTime(), s_msg.size(), res.status);
+#endif
+    return true;
+}
+
 bool sendMap(adhoc_communication::SendOccupancyGrid::Request &req, adhoc_communication::SendOccupancyGrid::Response & res)
 {
     /* Description:
@@ -1136,6 +1157,8 @@ int main(int argc, char **argv)
 
     /*Tsm function*/
     ros::ServiceServer sendPointCloudS = n_pub->advertiseService(robot_prefix + node_prefix + "send_pointcloud", sendPointCloud);
+
+	ros::ServiceServer sendTfS = n_pub->advertiseService(robot_prefix + node_prefix + "send_tf", sendTf);
 
     ros::ServiceServer getGroupStatusS = n_pub->advertiseService(robot_prefix + node_prefix + "get_group_state", getGroupStateF);
 
@@ -3160,19 +3183,26 @@ void publishPacket(Packet * p)
 	    /*Tutorial*/
             else if(p->data_type_ == FRAME_DATA_TYPE_QUATERNION)
             {
-		geometry_msgs::Quaternion quaternion;
-		desializeObject((unsigned char*) payload.data(), payload.length(), &quaternion);
+				geometry_msgs::Quaternion quaternion;
+				desializeObject((unsigned char*) payload.data(), payload.length(), &quaternion);
 
-		publishMessage(quaternion, p->topic_);
-	    }
+				publishMessage(quaternion, p->topic_);
+			}
 	    /*Tsm function*/
             else if(p->data_type_ == FRAME_DATA_TYPE_POINTCLOUD)
             {
-		sensor_msgs::PointCloud2 cloud;
-		desializeObject((unsigned char*) payload.data(), payload.length(), &cloud);
+				sensor_msgs::PointCloud2 cloud;
+				desializeObject((unsigned char*) payload.data(), payload.length(), &cloud);
 
-		publishMessage(cloud, p->topic_);
-	    }
+				publishMessage(cloud, p->topic_);
+			}
+            else if(p->data_type_ == FRAME_DATA_TYPE_TF)
+            {
+				tf2_msgs::TFMessage tf;
+				desializeObject((unsigned char*) payload.data(), payload.length(), &tf);
+
+				publishMessage(tf, p->topic_);
+			}
             else
                 ROS_ERROR("UNKNOWN DATA TYPE!");
 

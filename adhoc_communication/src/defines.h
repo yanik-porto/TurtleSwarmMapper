@@ -54,6 +54,7 @@ unsigned char bcast_mac[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};	/*Broadcast a
 /*Tutorial*/
 #define FRAME_DATA_TYPE_QUATERNION 0x51 //0x51 in hex means Q in ASCII -> stands for QUATERNION
 #define FRAME_DATA_TYPE_POINTCLOUD 0x58 //X
+#define FRAME_DATA_TYPE_TF 0x42 //B
 
 #define MAX_INTERN_JOIN_ATTEMPS 5  //defines how often a robot will try to join a mc group
 #define MAX_JOIN_ATTEMPS 5  //defines how often a robot will try to join a mc group
