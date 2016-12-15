@@ -19,8 +19,8 @@ services :
 * teleop
 * chatter (add "Yanik Concert" to the whitelist of Chatter_concert) 
 
-     rocon_launch yanik_concert start_solution_and_robot.concert --screen
-     rocon_remocon
+    rocon_launch yanik_concert start_solution_and_robot.concert --screen
+    rocon_remocon
 
 - Dependencies : concert_master
 - Tutorial : http://wiki.ros.org/rocon_concert/Tutorials/indigo/Create%20Your%20Own%20Solution
@@ -62,6 +62,7 @@ launcher for map exchange through adhoc_communication, node for calling adhoc_co
 
     #with running rtabmap
     rosrun tsm_share_maps send_pointcloud_client
+    rosrun tsm_share_maps send_tf_client
 
 - Dependencies : adhoc_communication, sensor_msgs
 
