@@ -12,7 +12,7 @@ void send_tf2(tf2_msgs::TFMessage tf)
   std::string node_prefix = "/adhoc_communication/";
   ros::ServiceClient client = n.serviceClient<adhoc_communication::SendTf>(robot_prefix + node_prefix + "send_tf");
   adhoc_communication::SendTf srv;
-  srv.request.dst_robot = "Turtlebot-H";
+  srv.request.dst_robot = "yanik-hp";
   srv.request.topic = "/tf_Turtle";
   srv.request.tf = tf;
   if (client.call(srv))

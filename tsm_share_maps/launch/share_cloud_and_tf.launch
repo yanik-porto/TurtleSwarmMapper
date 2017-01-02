@@ -1,0 +1,7 @@
+<launch>
+	<node name="adhoc_communication" pkg="adhoc_communication" type="adhoc_communication"/>
+
+	<node name="sendcloud" pkg="tsm_share_maps" type="send_pointcloud_client"/>
+
+<!--	<node name="sendtf" pkg="tsm_share_maps" type="send_tf_client"/> -->
+</launch>

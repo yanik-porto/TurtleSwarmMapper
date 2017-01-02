@@ -12,8 +12,8 @@ void send_ptcloud(sensor_msgs::PointCloud2 cloud)
   std::string node_prefix = "/adhoc_communication/";
   ros::ServiceClient client = n.serviceClient<adhoc_communication::SendPointCloud>(robot_prefix + node_prefix + "send_pointcloud");
   adhoc_communication::SendPointCloud srv;
-  srv.request.dst_robot = "Turtlebot-H";
-  srv.request.topic = "/rtabmap/cloud_map";
+  srv.request.dst_robot = "yanik-hp";
+  srv.request.topic = "/rtabmap/cloud_map1";
   srv.request.cloud = cloud;
   if (client.call(srv))
   {

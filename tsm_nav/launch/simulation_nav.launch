@@ -1,0 +1,24 @@
+<launch>
+<!--	<include file="$(find turtlebot_le2i)/launch/rplidar_minimal.launch">
+	</include>
+-->
+<!--	<node name="scan_mapping" pkg="gmapping" type="slam_gmapping">
+		<remap from="scan"  to="scan"/>
+	</node>
+-->
+
+	<include file="$(find tsm_nav)/launch/rtabmap_mapping.launch">
+		<arg name="args" value="--delete_db_on_start"/>
+	</include>
+
+	<include file="$(find tsm_nav)/launch/includes/move_base.launch.xml">
+		<arg name="ena_recovery" value="false"/>
+	</include>
+<!--	<node name="move_base" pkg="move_base" type="move_base">
+		<param name="recovery_behavior_enabled" value="false"/>
+		<remap from="cmd_vel" to="cmd_vel_mux/input/nav"/>
+	</node> -->
+
+	<node name="simple_goal" pkg="tsm_nav" type="navigation_goals">
+	</node>
+</launch>
