@@ -1,6 +1,8 @@
 # TurtleSwarmMapper
 
-3D Exploration from 2 robots, sharing their map when detecting each other. 
+3D Exploration from 2 turtlebots, sharing their map when detecting each other. 
+
+*distro : INDIGO*
 
 **Scenario** : 
 
@@ -12,16 +14,26 @@
 - The robot shares the estimated other robot position to the workstation
 - The workstation transforms the point cloud of the second robot in the reference frame of the first one
 - The point clouds are merged and a big 3D map is created
-               
+
+## Preliminary installations
+
+    $ sudo apt-get install ros-indigo-turtlebot-bringup ros-indigo-turtlebot-navigation ros-indigo-rtabmap-ros
+    
+    $ git clone https://github.com/introlab/find-object.git
+    
+    $ git clone https://github.com/roboticslab-fr/rplidar-turtlebot2.git
+    
+    $ git clone -b indigo https://github.com/aau-ros/aau_multi_robot.git
 
 ## tsm_nav
 
-Main package for navigation, mapping, 3D scanning and Pose estimation
-launcher for real turtlebot with rplidar node, gmapping, move_base
+Main package for navigation, mapping, 3D scanning and Pose estimation. 
 
      roslaunch tsm_nav bringup_map_move.launch
 
-- Dependencies : rplidar_node, turtlebot_le2i, gmapping, move_base
+Launcher for real turtlebot with : bringup minimal, rplidar node, rtabmap mapping, move_base, navigation goals, find object 2D
+
+- Dependencies : rplidar_node, turtlebot_le2i, rtabmap_ros, move_base, find_object_2d
 
 ## tsm_share_maps
 launcher for map exchange through adhoc_communication, node for calling adhoc_communication services 
