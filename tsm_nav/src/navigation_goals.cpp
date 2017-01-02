@@ -8,7 +8,8 @@
    
    int main(int argc, char** argv){
      ros::init(argc, argv, "simple_navigation_goals");
-   
+     bool lr = 1;
+     bool rot = 1;
      ros::NodeHandle node; 
      //tell the action client that we want to spin a thread by default
      MoveBaseClient ac("move_base", true);
@@ -28,25 +29,14 @@
     	listener1.waitForTransform("/object_8", "/map", ros::Time(0), ros::Duration(1.0));
     	listener1.lookupTransform("/object_8", "/map", ros::Time(0), transform);
 	goal.target_pose.header.frame_id = "base_link";
-     goal.target_pose.header.stamp = ros::Time::now();
-     goal.target_pose.pose.position.x = 0.0;
-     goal.target_pose.pose.position.y = 0.0;
-     goal.target_pose.pose.position.z = 0.0;
-     goal.target_pose.pose.orientation.w = 1.0;
-     goal.target_pose.pose.orientation.x = 0.0;
-     goal.target_pose.pose.orientation.y = 0.0;
-     goal.target_pose.pose.orientation.z = 0.0;
+     break;
   
     ROS_INFO("Robot Found.. Stopping navigation.");
-    ac.sendGoal(goal);
-  
-    ac.waitForResult();
-
 	} catch (tf::TransformException ex) {
    	 ROS_ERROR("%s",ex.what());
      goal.target_pose.header.frame_id = "base_link";
      goal.target_pose.header.stamp = ros::Time::now();
-     goal.target_pose.pose.position.x = 0.8;
+     goal.target_pose.pose.position.x = 0.5;
      goal.target_pose.pose.position.y = 0.0;
      goal.target_pose.pose.position.z = 0.0;
      goal.target_pose.pose.orientation.w = 1.0;
@@ -55,28 +45,52 @@
      goal.target_pose.pose.orientation.z = 0.0;
   
     ROS_INFO("Moving Forward");
+goal.target_pose.header.stamp = ros::Time::now();
     ac.sendGoal(goal);
   
     ac.waitForResult();
- 
-   if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+
+   if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
      ROS_INFO("No obstacle yet");
-   else{
+	if (rot == 1){
+		lr = !lr;  
+		rot = 0;
+ 		}     
+	}
+   else{ 
+     
      goal.target_pose.header.frame_id = "base_link";
-     goal.target_pose.header.stamp = ros::Time::now();
+     
      goal.target_pose.pose.position.x = 0.0;
      goal.target_pose.pose.position.y = 0.0;
      goal.target_pose.pose.position.z = 0.0;
      goal.target_pose.pose.orientation.w = 1.0;
      goal.target_pose.pose.orientation.x = 0.0;
      goal.target_pose.pose.orientation.y = 0.0;
-     goal.target_pose.pose.orientation.z = 0.8;
-     ROS_INFO("Obstacle ahead.. Turning");
+    if ((lr == 1)){
+     goal.target_pose.pose.orientation.z = 0.6;
+     ROS_INFO("Obstacle ahead.. Turning left");}
+    else if ((lr == 0))
+     {goal.target_pose.pose.orientation.z = -0.6;
+     ROS_INFO("Obstacle ahead.. Turning right");}
+    else{}
+     rot = 1;
+    goal.target_pose.header.stamp = ros::Time::now();
      ac.sendGoal(goal);
-  
-    ac.waitForResult();}
+    ac.waitForResult();
+    if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
+    ROS_INFO("that's fine");}
+    else{
+    lr = !lr;
+    ROS_INFO("There also obstacle");}
+}
 }
   }
+
+
+
+
+
    return 0;
  }
 
