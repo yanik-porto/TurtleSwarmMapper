@@ -47,7 +47,7 @@ From Workstation (in two terminals) :
 Main package for navigation, mapping, 3D scanning and Pose estimation. 
 
 - Dependencies : rplidar_node, turtlebot_le2i, rtabmap_ros, move_base, find_object_2d
-
+---
      roslaunch tsm_nav bringup_map_move.launch
 
 Launcher for real turtlebot with : bringup minimal, rplidar node, rtabmap mapping, move_base, navigation goals, find object 2D. The turtlebot will start, open the kinect (and the rplidar if it is plugged). It is then creating a 2D, 3D map, and moving randomly inside. This launch file embeds also the image detection and pose estimation. 
@@ -60,7 +60,7 @@ Existing cloned package for communication with new services. It sends data throu
 new srv :
 * SendPointCloud
 * SendTf
-
+---
     #for real communication
     rosrun adhoc_communication adhoc_communication
 
@@ -70,7 +70,7 @@ Running the node without any specification is taking the wifi connected on wlan0
 Launcher for map exchange through adhoc_communication, clients for adhoc_communication services 
 
 - Dependencies : adhoc_communication, sensor_msgs
-
+---
     #with running rtabmap
     roslaunch tsm_share_maps share_cloud_and_tf.launch
 
@@ -85,8 +85,7 @@ Launcher for stage world with 2 robots, mapping, move_base and sharing data in e
 
 - Dependencies : stage_ros, gmapping, move_base, adhoc_communication
 - Tutorial : http://wiki.ros.org/adhoc_communication
-
---- 
+---
     #Launch stage world, gmapping, move_base and adhoc_communication
     roslaunch multi-robot-simulation master.launch
 
@@ -111,7 +110,7 @@ own simulation for gazebo with 2 turtlebots
 
 - Dependencies : gazebot_concert
 - Tutorial : http://wiki.ros.org/gazebo_concert
-
+---
     roslaunch gazebo_concert_yanik concert.launch --screen
     rocon_remocon
 
@@ -125,7 +124,7 @@ services :
 * Admin
 * teleop
 * chatter (add "Yanik Concert" to the whitelist of Chatter_concert) 
-
+---
     rocon_launch yanik_concert start_solution_and_robot.concert --screen
     rocon_remocon
 
