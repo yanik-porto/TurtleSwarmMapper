@@ -25,6 +25,24 @@
     
     $ git clone -b indigo https://github.com/aau-ros/aau_multi_robot.git
 
+
+## Launcher
+
+From robots : 
+    
+    #Bringup robot, Scan, Explore
+    roslaunch tsm_nav bringup_map_move.launch
+
+    #Communicate
+    roslaunch tsm_share_maps share_cloud_and_tf.launch
+
+From Workstation (in two terminals) : 
+    
+    #Visualize (Add -> PointCloud2 -> Topic)
+    rosrun rviz rviz
+
+# PACKAGES 
+
 ## tsm_nav
 
 Main package for navigation, mapping, 3D scanning and Pose estimation. 
