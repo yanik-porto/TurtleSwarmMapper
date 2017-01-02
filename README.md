@@ -81,6 +81,14 @@ Launch adhoc_communication node, a client for send_pointcloud service and a clie
 
 Change the name of the laptop you wanna access (dst_robot) inside send_pointcloud_client.cpp and send_tf_client.cpp (do not forget to recompile). The name of the topic published on the other laptop can also be found in these files. 
 
+## my_pcl_tutorial 
+Node transforming the pointcloud from one reference frame to the other
+
+- Dependencies : pcl_ros, pcl_conversions
+
+---
+    rosrun my_pcl_tutorial example
+
 # TESTS
 
 ## Multi-robot-simulation
