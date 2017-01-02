@@ -86,6 +86,7 @@ Launcher for stage world with 2 robots, mapping, move_base and sharing data in e
 - Dependencies : stage_ros, gmapping, move_base, adhoc_communication
 - Tutorial : http://wiki.ros.org/adhoc_communication
 
+--- 
     #Launch stage world, gmapping, move_base and adhoc_communication
     roslaunch multi-robot-simulation master.launch
 
