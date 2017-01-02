@@ -44,67 +44,55 @@ From Workstation (in two terminals) :
 # PACKAGES 
 
 ## tsm_nav
-
 Main package for navigation, mapping, 3D scanning and Pose estimation. 
-
-     roslaunch tsm_nav bringup_map_move.launch
-
-Launcher for real turtlebot with : bringup minimal, rplidar node, rtabmap mapping, move_base, navigation goals, find object 2D
 
 - Dependencies : rplidar_node, turtlebot_le2i, rtabmap_ros, move_base, find_object_2d
 
-## tsm_share_maps
-launcher for map exchange through adhoc_communication, node for calling adhoc_communication services 
+     roslaunch tsm_nav bringup_map_move.launch
 
-    #in simulation
-    rosrun tsm_share_maps change_membership_client /robot_0 /adhoc_communication/ mc_robot_1 1
-
-    #with running rtabmap
-    rosrun tsm_share_maps send_pointcloud_client
-    rosrun tsm_share_maps send_tf_client
-
-- Dependencies : adhoc_communication, sensor_msgs
+Launcher for real turtlebot with : bringup minimal, rplidar node, rtabmap mapping, move_base, navigation goals, find object 2D. The turtlebot will start, open the kinect (and the rplidar if it is plugged). It is then creating a 2D, 3D map, and moving randomly inside. This launch file embeds also the image detection and pose estimation. 
 
 ## adhoc_communication
-already existing package for communication with new services
+Existing cloned package for communication with new services. It sends data through wifi when the node is launched on different machines and when they are neighbors. 
+
+- Tutorial : http://wiki.ros.org/adhoc_communication
+
 new srv :
 * SendPointCloud
+* SendTf
 
     #for real communication
     rosrun adhoc_communication adhoc_communication
 
-- Tutorial : http://wiki.ros.org/adhoc_communication
+Running the node without any specification is taking the wifi connected on wlan0 of the computer. If an other machine is running the node with the same wifi, this machine will appear has new neighbor. 
 
-## gazebo_concert_yanik
-own simulation for gazebo with 2 turtlebots
+## tsm_share_maps
+Launcher for map exchange through adhoc_communication, clients for adhoc_communication services 
 
-    roslaunch gazebo_concert_yanik concert.launch --screen
-    rocon_remocon
+- Dependencies : adhoc_communication, sensor_msgs
 
-- Dependencies : gazebot_concert
-- Tutorial : http://wiki.ros.org/gazebo_concert
+    #with running rtabmap
+    roslaunch tsm_share_maps share_cloud_and_tf.launch
 
-## yanik_concert
-own concert
+Launch adhoc_communication node, a client for send_pointcloud service and a client for send_tf service
 
-services : 
-* Admin
-* teleop
-* chatter (add "Yanik Concert" to the whitelist of Chatter_concert) 
+Change the name of the laptop you wanna access (dst_robot) inside send_pointcloud_client.cpp and send_tf_client.cpp (do not forget to recompile). The name of the topic published on the other laptop can also be found in these files. 
 
-    rocon_launch yanik_concert start_solution_and_robot.concert --screen
-    rocon_remocon
-
-- Dependencies : concert_master
-- Tutorial : http://wiki.ros.org/rocon_concert/Tutorials/indigo/Create%20Your%20Own%20Solution
+# TESTS
 
 ## Multi-robot-simulation
-launcher for stage world with 2 robots, mapping, move_base and sharing data in each of them
+Launcher for stage world with 2 robots, mapping, move_base and sharing data in each of them. This is for a test of the adhoc_communication on a single machine
 
+- Dependencies : stage_ros, gmapping, move_base, adhoc_communication
+- Tutorial : http://wiki.ros.org/adhoc_communication
+
+    #Launch stage world, gmapping, move_base and adhoc_communication
     roslaunch multi-robot-simulation master.launch
 
+    #Launch services for changing membership of neighbors
     roslaunch multi-robot-simulation call_services.launch
 
+    #Call a service manually, send a Twist message
     rosservice call /robot_0/adhoc_communication/send_twist "dst_robot: 'robot_1'
     topic: '/cmd_vel'
     twist:
@@ -117,5 +105,28 @@ launcher for stage world with 2 robots, mapping, move_base and sharing data in e
     y: 0.0
     z: 0.0" 
 
-- Dependencies : stage_ros, gmapping, move_base, adhoc_communication
-- Tutorial : http://wiki.ros.org/adhoc_communication
+## gazebo_concert_yanik
+own simulation for gazebo with 2 turtlebots
+
+- Dependencies : gazebot_concert
+- Tutorial : http://wiki.ros.org/gazebo_concert
+
+    roslaunch gazebo_concert_yanik concert.launch --screen
+    rocon_remocon
+
+## yanik_concert
+Own concert. Test for accessing the map of two robots. Some dropped leads on services. 
+
+- Dependencies : concert_master
+- Tutorial : http://wiki.ros.org/rocon_concert/Tutorials/indigo/Create%20Your%20Own%20Solution
+
+services : 
+* Admin
+* teleop
+* chatter (add "Yanik Concert" to the whitelist of Chatter_concert) 
+
+    rocon_launch yanik_concert start_solution_and_robot.concert --screen
+    rocon_remocon
+
+
+
