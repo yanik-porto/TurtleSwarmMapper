@@ -3,14 +3,14 @@
 3D Exploration from 2 robots, sharing their map when detecting each other. 
 
 **Scenario** : 
-... 2 robots scanning the environment are creating a 2D map and a 3D point cloud from their part.
-... They move randomly inside their map avoiding obstacles
-... At the same time, they send their 3D maps through adhoc-communication to the workstation
-... Each of them have a picture on its back in order to be recognizable by the other
-... Once a robot detects this picture on its team-mate, they stop exploring
-... The robot shares the estimated other robot position to the workstation
-... The workstation transforms the point cloud of the second robot in the reference frame of the first one
-... The point clouds are merged and a big 3D map is created
+2 robots scanning the environment are creating a 2D map and a 3D point cloud from their part. \s \s
+They move randomly inside their map avoiding obstacles \s \s
+...At the same time, they send their 3D maps through adhoc-communication to the workstation
+...Each of them have a picture on its back in order to be recognizable by the other
+...Once a robot detects this picture on its team-mate, they stop exploring
+...The robot shares the estimated other robot position to the workstation
+...The workstation transforms the point cloud of the second robot in the reference frame of the first one
+...The point clouds are merged and a big 3D map is created
                
 
 ## tsm_nav
