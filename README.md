@@ -141,6 +141,10 @@ services :
 ---
     rocon_launch yanik_concert start_solution_and_robot.concert --screen
     rocon_remocon
+    
+# VIDEO
+
+youtube video link : https://www.youtube.com/watch?v=o8uTnPNlolE&feature=youtu.be
 
 
 
