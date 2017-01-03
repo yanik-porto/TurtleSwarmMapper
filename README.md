@@ -144,7 +144,7 @@ services :
     
 # VIDEO
 
-youtube video link : https://www.youtube.com/watch?v=o8uTnPNlolE&feature=youtu.be
+youtube video link : https://youtu.be/o8uTnPNlolE
 
 
 
