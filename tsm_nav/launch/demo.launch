@@ -1,0 +1,7 @@
+<launch>
+	<include file="$(find tsm_nav)/launch/bringup_map_move.launch"/>
+
+	<include file="$(find tsm_share_maps)/launch/share_cloud_and_tf.launch"/>
+
+	<include file="$(find turtlebot_teleop)/launch/logitech_remap.launch"/>
+</launch>
