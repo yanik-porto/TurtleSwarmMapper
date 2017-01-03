@@ -30,13 +30,13 @@
 
 From robots : 
     
-    #Bringup robot, Scan, Explore
-    roslaunch tsm_nav bringup_map_move.launch
-
-    #Communicate
-    roslaunch tsm_share_maps share_cloud_and_tf.launch
+    #Bringup robot, Scan, Explore, Communicate
+    roslaunch tsm_nav demo.launch
 
 From Workstation (in two terminals) : 
+    
+    #Communicate
+    rosrun adhoc_communication adhoc_communication
     
     #Visualize (Add -> PointCloud2 -> Topic)
     rosrun rviz rviz
